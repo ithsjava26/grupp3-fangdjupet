@@ -1,6 +1,6 @@
 package characters;
 
-public class AbstractCharacter implements Character {
+abstract class AbstractCharacter implements Character {
     private int health;
 
     // -- turordning i strid? Ska väl vara gemensamt för både Knight och Enemy.../TW

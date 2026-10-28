@@ -1,4 +1,4 @@
-package se.grupp3.items;
+package items;
 
 public interface Weapons {
     int getDamage();

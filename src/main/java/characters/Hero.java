@@ -7,7 +7,7 @@ public abstract class Hero extends AbstractCharacter {
     private int health;
 
     // Alla förkämpar startas med 100 healthpoints.
-    public Hero(String name, int health) {
+    public Hero(String name) {
         this.name = name;
         this.health = 100;
     }

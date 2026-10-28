@@ -1,5 +1,6 @@
 package se.grupp3;
 
+import items.Item;
 import items.weapons.WoodenStick;
 
 public class Main {
@@ -7,7 +8,7 @@ public class Main {
         System.out.println("Fangdjupet");
         System.out.println("==========");
         IO.print("Hello World!");
-        WoodenStick woodenStick = new WoodenStick();
-        IO.println(woodenStick.getWeaponInfo());
+        Item woodenStick = new WoodenStick();
+        IO.println(((WoodenStick) woodenStick).getWeaponInfo());
     }
 }

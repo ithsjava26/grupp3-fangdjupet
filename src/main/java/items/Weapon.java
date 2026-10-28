@@ -2,7 +2,7 @@ package items;
 
 import items.weapons.WeaponInfo;
 
-public interface Weapons {
+public interface Weapon {
     int makeDamage();
 
     boolean isRangedWeapon();

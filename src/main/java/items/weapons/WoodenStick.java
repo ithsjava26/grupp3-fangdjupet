@@ -1,4 +1,7 @@
-package items;
+package items.weapons;
+
+import items.Item;
+import items.Weapons;
 
 public class WoodenStick extends Item implements Weapons {
 
@@ -12,7 +15,12 @@ public class WoodenStick extends Item implements Weapons {
     }
 
     @Override
+    public boolean isRangedWeapon() {
+        return false;
+    }
+
+    @Override
     public WeaponInfo getWeaponInfo() {
-        return new WeaponInfo("Träpinne", false, 10);
+        return new WeaponInfo("Träpinne", isRangedWeapon(), 10);
     }
 }

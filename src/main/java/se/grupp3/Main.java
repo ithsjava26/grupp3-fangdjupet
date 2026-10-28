@@ -1,6 +1,6 @@
 package se.grupp3;
 
-import items.WoodenStick;
+import items.weapons.WoodenStick;
 
 public class Main {
     public static void main(String[] args) {

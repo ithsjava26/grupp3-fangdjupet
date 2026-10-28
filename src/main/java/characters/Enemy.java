@@ -7,6 +7,6 @@ public abstract class Enemy extends AbstractCharacter {
         return 0;
     }
 
-     abstract void presentEnemy();
+     public abstract void presentEnemy();
 
 }

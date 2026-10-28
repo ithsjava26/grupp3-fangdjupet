@@ -2,6 +2,7 @@ package characters;
 
 public class Insurgent extends Enemy {
     //Specifika egenskaper för insurgents/upprorsmakare/rebeller./TW
+    //Code rabbit: maybe a health initialization?
 
     @Override
     public void presentEnemy() {

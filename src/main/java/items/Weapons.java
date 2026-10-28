@@ -1,8 +1,9 @@
 package items;
 
 public interface Weapons {
-    int getDamage();
+    int makeDamage();
 
-    void attack();
+    WeaponInfo getWeaponInfo();
+
 
 }

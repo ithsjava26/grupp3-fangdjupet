@@ -1,8 +1,12 @@
 package items;
 
-public interface Weapons {
-    int getDamage();
+import items.weapons.WeaponInfo;
 
-    void attack();
+public interface Weapons {
+    int makeDamage();
+
+    boolean isRangedWeapon();
+    WeaponInfo getWeaponInfo();
+
 
 }

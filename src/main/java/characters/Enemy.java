@@ -1,7 +1,10 @@
 package characters;
 
 public abstract class Enemy extends AbstractCharacter {
-    //Någon gemensam logik för alla enemies?/TW
+
+    public Enemy(int health) {
+        super(health);
+    }
 
     int makeDamage() {
         return 0;

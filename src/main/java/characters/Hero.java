@@ -8,12 +8,12 @@ public abstract class Hero extends AbstractCharacter {
     private AttackStrategy attackStrategy;
 
     public Hero(String name) {
+        super(100);
         this.name = name;
-        this.health = 100;
     }
 
-    public int heal() {
-        return 0;
+    public void heal() {
+
     }
 
     @Override

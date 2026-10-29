@@ -1,7 +1,11 @@
 package characters;
 
-abstract class AbstractCharacter implements Character {
+public abstract class AbstractCharacter implements Character {
     private int health;
+
+    public AbstractCharacter(int health) {
+        this.health = health;
+    }
 
 //TODO: turordning i strid?
 

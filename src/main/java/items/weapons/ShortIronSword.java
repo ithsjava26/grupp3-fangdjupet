@@ -5,7 +5,7 @@ import items.Weapon;
 
 public class ShortIronSword extends Item implements Weapon {
     public ShortIronSword() {
-        super("kort Järnsvärd", false);
+        super("Kort Järnsvärd", false);
     }
 
     @Override

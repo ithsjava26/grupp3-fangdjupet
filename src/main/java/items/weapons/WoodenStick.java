@@ -1,9 +1,9 @@
 package items.weapons;
 
 import items.Item;
-import items.Weapons;
+import items.Weapon;
 
-public class WoodenStick extends Item implements Weapons {
+public class WoodenStick extends Item implements Weapon {
 
     public WoodenStick() {
         super("Träpinne", false);
@@ -21,6 +21,6 @@ public class WoodenStick extends Item implements Weapons {
 
     @Override
     public WeaponInfo getWeaponInfo() {
-        return new WeaponInfo("Träpinne", isRangedWeapon(), 10);
+        return new WeaponInfo("Träpinne", isRangedWeapon(), makeDamage());
     }
 }

@@ -8,5 +8,13 @@ public abstract class Item {
         this.name = name;
         this.stackable = stackable;
     }
+
+    public Boolean getStackable() {
+        return stackable;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
 

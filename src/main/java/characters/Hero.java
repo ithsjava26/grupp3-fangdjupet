@@ -12,8 +12,8 @@ public abstract class Hero extends AbstractCharacter {
         this.name = name;
     }
 
-    public void heal() {
-
+    public void heal(int amount) {
+        health += amount;
     }
 
     @Override

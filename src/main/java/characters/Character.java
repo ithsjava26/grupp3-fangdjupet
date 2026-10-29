@@ -2,8 +2,9 @@ package characters;
 
 public interface Character {
 
-    int getHealth();
-    void takeDamage(int damage);
     void attack();
+    void takeDamage(int damage);
+    int getHealth();
+    String getName();
 
 }

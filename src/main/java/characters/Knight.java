@@ -1,9 +1,11 @@
 package characters;
 
-public class Knight extends AbstractCharacter {
+public class Knight extends Hero {
+    //Någon slags riddarspecifik implementation. Kanske bara kan använda en viss del av Inventoryt?
 
-    //Tänker spontant att bara riddaren ska kunna heala? Ifall enemys ska kunna det också får vi flytta på denna./TW
-    private int heal() {
-        return 0;
+
+    public Knight(String name) {
+        super(name);
     }
+
 }

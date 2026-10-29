@@ -3,8 +3,8 @@ package items.potions;
 import items.Item;
 import items.Potion;
 
-public class SmallHealingpotion extends Item implements Potion {
-    public SmallHealingpotion() {
+public class SmallHealingPotion extends Item implements Potion {
+    public SmallHealingPotion() {
         super("Hälsosmoothie :)", true);
     }
 

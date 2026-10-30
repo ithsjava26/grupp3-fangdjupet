@@ -21,6 +21,6 @@ public class WoodenStick extends Item implements Weapon {
 
     @Override
     public WeaponInfo getWeaponInfo() {
-        return new WeaponInfo("Träpinne", isRangedWeapon(), makeDamage());
+        return new WeaponInfo(getName(), isRangedWeapon(), makeDamage());
     }
 }

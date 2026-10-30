@@ -1,24 +1,27 @@
 package characters;
 
-// Lägger till klass för att det ska gå att lägga till fler förkämpar ifall vi vill längre fram, men också för att
-// matcha mönstret med AbstractCharacter -> Enemy -> Insurgent.
+import characters.combat.AttackStrategy;
+
 public abstract class Hero extends AbstractCharacter {
     private final String name;
     private int health;
+    private AttackStrategy attackStrategy;
 
-    // Alla förkämpar startas med 100 healthpoints.
     public Hero(String name) {
+        super(100);
         this.name = name;
-        this.health = 100;
     }
 
-    // Bara förkämpar ska kunna heala.
-    public int heal() {
-        return 0;
+    public void heal(int amount) {
+        health += amount;
     }
 
     @Override
     public String getName() {
         return name;
+    }
+
+    public void setAttackStrategy(AttackStrategy attackStrategy) {
+        this.attackStrategy = attackStrategy;
     }
 }

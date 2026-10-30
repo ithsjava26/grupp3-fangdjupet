@@ -32,8 +32,4 @@ public class InventorySlot {
     public String getName() {
         return item.getName();
     }
-
-    public String getName() {
-        return item.getName();
-    }
 }

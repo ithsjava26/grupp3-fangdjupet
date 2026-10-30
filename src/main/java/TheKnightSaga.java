@@ -1,5 +1,5 @@
 public class TheKnightSaga {
-    static void main() {
+    public static void main(String[] args) {
         //Detta som ska bli vår spelkonsol, mainklassen som ska köra allt!
     }
 }

@@ -28,4 +28,8 @@ public class InventorySlot {
         this.kvantitet -= Quantity;
         if (this.kvantitet < 0) this.kvantitet = 0;
     }
+
+    public String getName() {
+        return item.getName();
+    }
 }

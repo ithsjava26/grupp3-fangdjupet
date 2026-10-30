@@ -2,11 +2,11 @@ package items;
 
 public class InventorySlot {
     private Item item;
-    private int kvantitet;
+    private int quantity;
 
-    public InventorySlot(Item item, int kvantitet) {
+    public InventorySlot(Item item, int quanity) {
         this.item = item;
-        this.kvantitet = kvantitet;
+        this.quantity = quantity;
     }
 
     public Item getItem() {
@@ -14,19 +14,19 @@ public class InventorySlot {
     }
 
     public int getQuantity() {
-        return kvantitet;
+        return quantity;
     }
 
-    public void increaseQuantity(int Quantity) {
+    public void increaseQuantity(int quantity) {
         if (item.getStackable()) {
-            this.kvantitet += Quantity;
+            this.quantity += quantity;
         } else
             IO.print("Det här föremålet går inte att ha flera av");
     }
 
-    public void decreaseQuantity(int Quantity) {
-        this.kvantitet -= Quantity;
-        if (this.kvantitet < 0) this.kvantitet = 0;
+    public void decreaseQuantity(int quantity) {
+        this.quantity -= quantity;
+        if (this.quantity < 0) this.quantity = 0;
     }
 
     public String getName() {

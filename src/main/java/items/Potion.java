@@ -1,6 +1,6 @@
 package items;
 
-public interface Potions {
+public interface Potion {
     void use();
 
 }

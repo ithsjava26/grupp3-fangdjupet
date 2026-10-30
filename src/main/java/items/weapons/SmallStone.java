@@ -1,9 +1,9 @@
 package items.weapons;
 
 import items.Item;
-import items.Weapons;
+import items.Weapon;
 
-public class SmallStone extends Item implements Weapons {
+public class SmallStone extends Item implements Weapon {
     public SmallStone() {
         super("Sten", true);
     }

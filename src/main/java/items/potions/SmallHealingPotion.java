@@ -15,4 +15,8 @@ public class SmallHealingPotion extends Item implements Potion {
         // set the healingpotion -1 in inventory(not yet implemented)
 
     }
+
+    public int getHealingAmount() {
+        return 15;
+    }
 }

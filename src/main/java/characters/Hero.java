@@ -4,7 +4,6 @@ import characters.combat.AttackStrategy;
 
 public abstract class Hero extends AbstractCharacter {
     private final String name;
-    private int health;
     private AttackStrategy attackStrategy;
 
     public Hero(String name) {
@@ -13,7 +12,9 @@ public abstract class Hero extends AbstractCharacter {
     }
 
     public void heal(int amount) {
-        health += amount;
+        setHealth(getHealth() +  amount);
+        if (getHealth() > 100)
+            setHealth(100);
     }
 
     @Override
@@ -23,5 +24,13 @@ public abstract class Hero extends AbstractCharacter {
 
     public void setAttackStrategy(AttackStrategy attackStrategy) {
         this.attackStrategy = attackStrategy;
+    }
+
+    @Override
+    public void attack(Character target) {
+        if (attackStrategy != null)
+            attackStrategy.executeAttack(this, target);
+        else
+            IO.println(getName() + " har inga vapen!");
     }
 }

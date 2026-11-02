@@ -11,20 +11,25 @@ public abstract class AbstractCharacter implements Character {
 
     @Override
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     @Override
     public void takeDamage(int damage) {
-        health -= damage;
+        if (damage > 0)
+            health -= damage;
     }
 
     @Override
-    public void attack() {
+    public void attack(Character target) {
 
     }
 
     public boolean isAlive() {
-        return health > 0;
+        return this.health > 0;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

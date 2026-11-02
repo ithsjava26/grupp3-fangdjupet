@@ -8,5 +8,4 @@ public class Knight extends Hero {
         super(name);
     }
 
-
 }

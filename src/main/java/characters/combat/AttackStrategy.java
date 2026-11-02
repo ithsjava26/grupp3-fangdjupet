@@ -1,9 +1,10 @@
 package characters.combat;
 
-import items.Weapon;
+import characters.Character;
 
 public interface AttackStrategy {
 
-    int calculateDamage(Weapon weapon);
+    int calculateDamage();
 
+    void executeAttack(Character hero, Character enemy);
 }

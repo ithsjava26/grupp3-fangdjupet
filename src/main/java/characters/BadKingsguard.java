@@ -15,8 +15,10 @@ public class BadKingsguard extends Enemy {
     }
 
     @Override
-    public void attack(Character target) {
-
+    public void attack(Character hero) {
+        int damage = 40;
+        IO.println(getName() + " träffar dig med sitt tunga svärd och gör " + damage + " skada.");
+        hero.takeDamage(damage);
     }
 
     @Override

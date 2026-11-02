@@ -13,8 +13,10 @@ public class Archer extends Enemy {
     }
 
     @Override
-    public void attack(Character target) {
-
+    public void attack(Character hero) {
+        int damage = 25;
+        IO.println(getName() + " träffar dig och gör " + damage + " skada!");
+        hero.takeDamage(damage);
     }
 
     @Override

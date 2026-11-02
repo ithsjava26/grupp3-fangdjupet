@@ -14,10 +14,10 @@ public class Insurgent extends Enemy {
     }
 
     @Override
-    public void attack(Character goodGuy) {
-        int damage = 20;
-        IO.println("Rebellen attackerar dig och gör " + damage + " skada!");
-        goodGuy.takeDamage(damage);
+    public void attack(Character hero) {
+        int damage = 15;
+        IO.println(getName() + " attackerar dig och gör " + damage + " skada!");
+        hero.takeDamage(damage);
     }
 
     @Override

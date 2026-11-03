@@ -19,12 +19,13 @@ public class InventorySlot {
 
     public void increaseQuantity(int quantity) {
         if (item.getStackable()) {
-            this.quantity += quantity;
+            this.quantity += Math.abs(quantity);
         } else
             IO.print("Det här föremålet går inte att ha flera av");
     }
 
     public void decreaseQuantity(int quantity) {
+        quantity = Math.abs(quantity);
         this.quantity -= quantity;
         if (this.quantity < 0) this.quantity = 0;
     }
@@ -32,4 +33,6 @@ public class InventorySlot {
     public String getName() {
         return item.getName();
     }
+
+
 }

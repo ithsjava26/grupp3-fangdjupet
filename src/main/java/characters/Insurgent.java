@@ -2,17 +2,26 @@ package characters;
 
 public class Insurgent extends Enemy {
 
-    public Insurgent(int health) {
+    public Insurgent() {
         super(50);
     }
 
     @Override
     public void presentEnemy() {
-        IO.println("You are now standing face to face with an " + getName() + ". The leader, in fact.");
+        IO.println("Dörren gnisslar när den öppnas och avslöjar en skepnad i mörkret. Han tar ett kliv framåt. " +
+                getName() + ", klädd enbart i trasiga kläder men med ett bestämt ansiktsuttryck. Du ska inte komma" +
+                "ut från det här rummet...");
+    }
+
+    @Override
+    public void attack(Character hero) {
+        int damage = 15;
+        IO.println(getName() + " attackerar dig och gör " + damage + " skada!");
+        hero.takeDamage(damage);
     }
 
     @Override
     public String getName() {
-        return getClass().getSimpleName();
+        return "Rebellen";
     }
 }

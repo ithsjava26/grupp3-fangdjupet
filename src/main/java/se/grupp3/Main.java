@@ -16,11 +16,13 @@ public class Main {
         Inventory backPack = new Inventory();
         Item woodenstick = new WoodenStick();
         Item smallStone = new SmallStone();
+        backPack.printInventory();
         backPack.addItem(woodenstick, 1);
         backPack.addItem(smallStone, 2);
         backPack.printInventory();
         //This Doesn't work yet.
         backPack.addItem(woodenstick, 3);
+        backPack.addItem(smallStone, 1);
         backPack.printInventory();
     }
 }

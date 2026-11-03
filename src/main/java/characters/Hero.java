@@ -1,7 +1,8 @@
 package characters;
 
-import characters.combat.AttackStrategy;
+import characters.combat.*;
 import items.Inventory;
+import items.Weapon;
 
 public abstract class Hero extends AbstractCharacter {
     private final String name;
@@ -38,5 +39,18 @@ public abstract class Hero extends AbstractCharacter {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public void equipWeapon(Weapon weapon, boolean useCriticalAttack) {
+        if (useCriticalAttack) {
+            setAttackStrategy(new CriticalAttack(weapon));
+            IO.println(getName() + " samlar all sin styrka för ett kraftanfall");
+        } else if (weapon.isRangedWeapon()) {
+            setAttackStrategy(new RangedAttack(weapon));
+            IO.println(getName() + " gör sig redo att avfyra " + weapon.getWeaponInfo().name() + ".");
+        } else {
+            setAttackStrategy(new MeleeAttack(weapon));
+            IO.println(getName() + " höjer " + weapon.getWeaponInfo().name() + " för närstrid.");
+        }
     }
 }

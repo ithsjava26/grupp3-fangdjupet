@@ -21,6 +21,9 @@ public class Combat {
         while (hero.isAlive() && enemy.isAlive()) {
             if (isHeroTurn) {
                 IO.println("--- DIN TUR ---");
+
+                //TODO! Låta användaren välja att dricka potion eller välja vapen?
+
                 hero.attack(enemy);
             } else {
                 IO.println("--- " + enemy.getName().toUpperCase() + "S TUR ---");

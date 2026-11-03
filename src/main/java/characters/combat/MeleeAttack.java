@@ -21,6 +21,12 @@ public class MeleeAttack implements AttackStrategy {
 
     @Override
     public void executeAttack(Character hero, Character enemy) {
-
+        int damage = calculateDamage();
+        IO.println(hero.getName() + " anfaller " + enemy.getName() + " med " + weapon.getWeaponInfo().name() + "!");
+        if (damage > 0) {
+            enemy.takeDamage(damage);
+            IO.println(enemy.getName() + " träffades och tog " + damage + " i skada. Fienden har " + enemy.getHealth() +
+                    "HP kvar.");
+        }
     }
 }

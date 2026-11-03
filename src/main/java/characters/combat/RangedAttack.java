@@ -21,6 +21,13 @@ public class RangedAttack implements AttackStrategy {
 
     @Override
     public void executeAttack(Character hero, Character enemy) {
-
+        int damage = calculateDamage();
+        IO.println(hero.getName() + " gör den bästa attack han kan komma på när han befinner sig så långt från sin " +
+                "motståndare, med " + weapon.getWeaponInfo().name() + ".");
+        if (damage > 0) {
+            enemy.takeDamage(damage);
+            IO.println(enemy.getName() + " träffades och tog " + damage + " i skada. Fienden har " + enemy.getHealth() +
+                    "HP kvar.");
+        }
     }
 }

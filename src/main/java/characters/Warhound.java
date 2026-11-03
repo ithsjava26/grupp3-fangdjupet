@@ -13,9 +13,10 @@ public class Warhound extends Enemy {
     }
 
     @Override
-    public void attack(Character target) {
+    public void attack(Character hero) {
         int damage = 10;
         IO.println(getName() + " biter dig, blodet rinner och du får " + damage + " skada.");
+        hero.takeDamage(damage);
     }
 
     @Override

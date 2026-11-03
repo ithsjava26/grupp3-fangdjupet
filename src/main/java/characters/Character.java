@@ -6,4 +6,5 @@ public interface Character {
     void takeDamage(int damage);
     int getHealth();
     String getName();
+    boolean isAlive();
 }

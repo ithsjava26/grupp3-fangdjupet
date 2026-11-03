@@ -23,6 +23,6 @@ public class BadKingsguard extends Enemy {
 
     @Override
     public String getName() {
-        return "Kungens livvakt";
+        return "Livvakten";
     }
 }

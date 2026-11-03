@@ -1,10 +1,12 @@
 package characters;
 
 import characters.combat.AttackStrategy;
+import items.Inventory;
 
 public abstract class Hero extends AbstractCharacter {
     private final String name;
     private AttackStrategy attackStrategy;
+    private final Inventory inventory = new Inventory();
 
     public Hero(String name) {
         super(100);
@@ -32,5 +34,9 @@ public abstract class Hero extends AbstractCharacter {
             attackStrategy.executeAttack(this, target);
         else
             IO.println(getName() + " har inga vapen!");
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }

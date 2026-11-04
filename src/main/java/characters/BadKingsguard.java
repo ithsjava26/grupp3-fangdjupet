@@ -1,5 +1,7 @@
 package characters;
 
+import items.weapons.WeaponInfo;
+
 public class BadKingsguard extends Enemy {
 
     public BadKingsguard() {
@@ -24,5 +26,14 @@ public class BadKingsguard extends Enemy {
     @Override
     public String getName() {
         return "Livvakten";
+    }
+
+    @Override
+    public boolean isWeaponEffective(WeaponInfo info) {
+        if (info.damage() < 25) {
+            IO.println(getName() + "s tunga rustning skyddar från skadan!");
+            return false;
+        }
+        return true;
     }
 }

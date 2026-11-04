@@ -1,5 +1,7 @@
 package characters;
 
+import items.weapons.WeaponInfo;
+
 public class Archer extends Enemy {
 
     public Archer() {
@@ -22,5 +24,14 @@ public class Archer extends Enemy {
     @Override
     public String getName() {
         return "Bågskytten";
+    }
+
+    @Override
+    public boolean isWeaponEffective(WeaponInfo info) {
+        if (!info.rangedWeapon()) {
+            IO.println("Fienden är för långt bort, du måste använda distansvapen!");
+            return false;
+        }
+        return true;
     }
 }

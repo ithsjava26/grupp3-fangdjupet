@@ -7,8 +7,6 @@ public abstract class AbstractCharacter implements Character {
         this.health = health;
     }
 
-//TODO: turordning i strid?
-
     @Override
     public int getHealth() {
         return this.health;
@@ -16,14 +14,13 @@ public abstract class AbstractCharacter implements Character {
 
     @Override
     public void takeDamage(int damage) {
-        if (damage > 0)
-            health -= damage;
+        this.health -= Math.abs(damage);
+        if (this.health < 0 )
+            this.health = 0;
     }
 
     @Override
-    public void attack(Character target) {
-
-    }
+    public abstract void attack(Character target);
 
     public boolean isAlive() {
         return this.health > 0;

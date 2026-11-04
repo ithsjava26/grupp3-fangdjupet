@@ -6,10 +6,6 @@ public abstract class Enemy extends AbstractCharacter {
         super(health);
     }
 
-    public int makeDamage() {
-        return 0;
-    }
-
      public abstract void presentEnemy();
 
     @Override

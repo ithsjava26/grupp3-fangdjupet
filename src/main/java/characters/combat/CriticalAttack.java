@@ -10,8 +10,6 @@ public class CriticalAttack implements AttackStrategy {
         this.weapon = weapon;
     }
 
-    //TODO: denna metod ska också kosta hjälten health, kanske hälften av vad vapnet som används orsakar? Ifall det
-    // blir för krångligt så kanske 5-10 healthPoints.
     @Override
     public int calculateDamage() {
         int damage = weapon.makeDamage();
@@ -20,6 +18,17 @@ public class CriticalAttack implements AttackStrategy {
 
     @Override
     public void executeAttack(Character hero, Character enemy) {
+        int damage = calculateDamage();
+        int selfDamage = weapon.makeDamage() / 3;
 
+        IO.println(hero.getName() + " samlar all sin kraft och gör en kritisk attack med " +
+                weapon.getWeaponInfo().name() + "!");
+
+        enemy.takeDamage(damage);
+        IO.println(enemy.getName() + " tar " + damage + " i skada! Fienden har " + enemy.getHealth() + "HP kvar.");
+
+        hero.takeDamage(selfDamage);
+        IO.println("Den kritiska attacken är effektiv, men kostar. " + hero.getName() + " tappar " + selfDamage +
+                "HP. " + hero.getHealth() + "HP kvar.");
     }
 }

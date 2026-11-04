@@ -1,5 +1,6 @@
 package items;
 
+import characters.Knight;
 import items.armour.IronArmour;
 import items.potions.LargeHealingPotion;
 import items.potions.SmallHealingPotion;
@@ -46,6 +47,10 @@ public abstract class Item {
             default -> throw new IllegalArgumentException("Invalid item name"); // We will have to make sure to spell
             // the items correctly (and mind Case sensitivity).
         };
+    }
+
+    public void use(Knight knight) {
+
     }
 
 }

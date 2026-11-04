@@ -23,4 +23,6 @@ public class WoodenStick extends Item implements Weapon {
     public WeaponInfo getWeaponInfo() {
         return new WeaponInfo(getName(), isRangedWeapon(), makeDamage());
     }
+
+
 }

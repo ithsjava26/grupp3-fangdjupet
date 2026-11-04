@@ -16,9 +16,6 @@ public class SmallHealingPotion extends Item implements Potion {
         knight.heal(healingAmount);
         knight.getInventory().removeItem(this, 1);
 
-        //knight.inventory.decreaseQuantity(1);
-        //hur ska den här kopplingen göras? ska vi ha ett fält i TheKnightSaga som heter Inventory som man kan
-        //acsessa med en getter eller har ni något annat bra förslag?
     }
 
     public int getHealingAmount() {

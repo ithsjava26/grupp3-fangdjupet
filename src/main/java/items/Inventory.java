@@ -29,10 +29,18 @@ public class Inventory {
     }
 
     public void printInventory() {
-        for (InventorySlot slot : slot) {
-            IO.println(slot.getItem().getName() + slot.getQuantity());
+        IO.println("=====================Ryggsäcken============================");
+        int index = 1;
+        for (InventorySlot currentSlot : slot) {
+            IO.println("Nr:" + index + " Namn:" + currentSlot.getItem().getName().toUpperCase() +
+                    " Antal:" + currentSlot.getQuantity());
+            IO.println(currentSlot.getItem().getinfo());
+            IO.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+            index++;
         }
+        IO.println("===========================================================");
     }
+
 
     public int size() {
         return slot.size();
@@ -40,5 +48,17 @@ public class Inventory {
 
     public int getQuantity(int index) {
         return slot.get(index).getQuantity();
+    }
+
+    public void removeItem(Item item, int quantity) {
+        for (InventorySlot current : slot) {
+            if (current.getName().equals(item.getName())) {
+                current.decreaseQuantity(quantity);
+                if (current.getQuantity() == 0) {
+                    slot.remove(current);   // safe: we return right after
+                }
+                return;
+            }
+        }
     }
 }

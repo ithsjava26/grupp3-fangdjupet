@@ -1,7 +1,10 @@
 package items;
 
-public interface Armour {
-    void equip();
+import items.armour.ArmourInfo;
 
-    void unequip();
+public interface Armour {
+
+    boolean isEquipped();
+
+    ArmourInfo getArmourInfo();
 }

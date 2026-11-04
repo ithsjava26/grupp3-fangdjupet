@@ -32,7 +32,7 @@ public class Inventory {
         IO.println("=====================Ryggsäcken============================");
         int index = 1;
         for (InventorySlot currentSlot : slot) {
-            IO.println("Nr:" + index + " Namn:" + currentSlot.getItem().getName().toUpperCase() +
+            IO.println("Föremål Nr:" + index + " Namn:" + currentSlot.getItem().getName().toUpperCase() +
                     " Antal:" + currentSlot.getQuantity());
             IO.println(currentSlot.getItem().getinfo());
             IO.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
@@ -55,10 +55,21 @@ public class Inventory {
             if (current.getName().equals(item.getName())) {
                 current.decreaseQuantity(quantity);
                 if (current.getQuantity() == 0) {
-                    slot.remove(current);   // safe: we return right after
+                    slot.remove(current);
                 }
                 return;
             }
         }
+    }
+
+    /**
+     * Item_nr = the number of the item you want to use.
+     * Will throw IndexOutOfBoundsException if the item number is <= 0 or
+     * if the number is greater than Items in inventory.
+     */
+    public InventorySlot getSlot(int Item_nr) {
+        return slot.get(Item_nr - 1);// I don't know if we want it like this. But the thought is for it to be easier
+        //when you type in which Item you want to use. It will be the same number that you see when you print the inventory.
+        // example of usage: knight.getInventory().getSlot(1).getItem().use(knight);
     }
 }

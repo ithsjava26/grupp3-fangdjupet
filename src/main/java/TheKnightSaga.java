@@ -84,6 +84,7 @@ public class TheKnightSaga {
             return;
         }
         IO.println(hero.getName() + " bär just nu: (utrustningsvyn kopplas samman med Inventory i fas 2)");
+        //hero.getInventory().printInventory();
     }
 
     private void saveOnExit(SaveGameService saveService) {

@@ -55,7 +55,7 @@ public class Inventory {
             if (current.getName().equals(item.getName())) {
                 current.decreaseQuantity(quantity);
                 if (current.getQuantity() == 0) {
-                    slot.remove(current);   // safe: we return right after
+                    slot.remove(current);
                 }
                 return;
             }

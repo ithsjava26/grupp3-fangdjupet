@@ -1,5 +1,8 @@
+import characters.Hero;
 import characters.Knight;
+import game.GameEngine;
 import game.SnapshotRestorer;
+import game.events.ConsoleGameLogger;
 import game.menu.MenuChoice;
 import game.save.GameSnapshot;
 import game.save.SaveGameException;
@@ -7,7 +10,6 @@ import game.save.SaveGameService;
 import game.save.TextSaveGameService;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -18,7 +20,7 @@ public class TheKnightSaga {
     private static final Path SAVE_FILE = Path.of("saves", "sparat-aventyr.txt");
     private static final Scanner scanner = new Scanner(System.in);
 
-    private Knight hero;
+    private GameEngine engine;
 
     public static void main(String[] args) {
         new TheKnightSaga().run();
@@ -32,10 +34,10 @@ public class TheKnightSaga {
             printMenu();
             MenuChoice choice = MenuChoice.parse(scanner.nextLine());
             switch (choice) {
-                case NEW_ADVENTURE -> hero = startNewAdventure();
-                case CONTINUE -> hero = continueAdventure(saveService);
+                case NEW_ADVENTURE -> engine = startNewAdventure();
+                case CONTINUE -> engine = continueAdventure(saveService);
                 case SHOW_EQUIPMENT -> showEquipment();
-                case NEXT_BATTLE -> IO.println("Striderna kopplas in när spelmotorn är klar!");
+                case NEXT_BATTLE -> runNextBattle(saveService);
                 case EXIT -> {
                     saveOnExit(saveService);
                     running = false;
@@ -56,44 +58,74 @@ public class TheKnightSaga {
                 e. Avsluta""");
     }
 
-    private Knight startNewAdventure() {
+    private GameEngine startNewAdventure() {
         IO.print("Vad heter din hjälte? ");
         String name = scanner.nextLine().trim();
         if (name.isEmpty()) {
             name = "Riddaren";
         }
+        GameEngine newEngine = GameEngine.newGame(name);
+        newEngine.addListener(new ConsoleGameLogger());
         IO.println(name + " kliver ner i Fangdjupets mörka djup...");
-        return new Knight(name);
+        return newEngine;
     }
 
-    private Knight continueAdventure(SaveGameService saveService) {
+    private GameEngine continueAdventure(SaveGameService saveService) {
         try {
             GameSnapshot snapshot = saveService.load();
-            Knight restored = SnapshotRestorer.restore(snapshot);
-            IO.println("Välkommen tillbaka, " + restored.getName() + "! (" + restored.getHealth() + " hp)");
-            return restored;
+            Knight hero = SnapshotRestorer.restore(snapshot);
+            GameEngine restoredEngine = new GameEngine(hero, snapshot.roomNumber(), snapshot.defeatedEnemies());
+            restoredEngine.addListener(new ConsoleGameLogger());
+            IO.println("Välkommen tillbaka, " + hero.getName() + "! (" + hero.getHealth() + " hp)");
+            return restoredEngine;
         } catch (SaveGameException e) {
             IO.println("Kunde inte läsa in sparat äventyr: " + e.getMessage());
-            return hero; // keep the current hero if there is one
+            return engine; // keep the current game if there is one
         }
     }
 
     private void showEquipment() {
-        if (hero == null) {
+        if (engine == null) {
             IO.println("Du måste starta ett äventyr först!");
             return;
         }
-        IO.println(hero.getName() + " bär just nu: (utrustningsvyn kopplas samman med Inventory i fas 2)");
+        Hero hero = engine.getHero();
+        IO.println(hero.getName() + " har " + hero.getHealth() + " hp. Rum " + engine.getRoomNumber()
+                + " av " + GameEngine.TOTAL_ROOMS + ".");
+        hero.getInventory().printInventory();
+    }
+
+    private void runNextBattle(SaveGameService saveService) {
+        if (engine == null) {
+            IO.println("Du måste starta ett äventyr först!");
+            return;
+        }
+        int roomBeforeBattle = engine.getRoomNumber();
+        engine.nextBattle();
+        if (engine.isGameOver()) {
+            IO.println("Spelet är över!");
+            saveService.delete();
+            engine = null;
+            return;
+        }
+        // Autosave only when a room was actually cleared
+        if (engine.getRoomNumber() > roomBeforeBattle) {
+            saveGame(saveService, "(Framstegen sparades)");
+        }
     }
 
     private void saveOnExit(SaveGameService saveService) {
-        if (hero == null) {
+        if (engine == null) {
             IO.println("Välkommen tillbaka!");
             return;
         }
+        saveGame(saveService, "Ditt äventyr sparades. Välkommen tillbaka!");
+    }
+
+    private void saveGame(SaveGameService saveService, String successMessage) {
         try {
-            saveService.save(new GameSnapshot(hero.getName(), hero.getHealth(), 1, List.of(), List.of()));
-            IO.println("Ditt äventyr sparades. Välkommen tillbaka!");
+            saveService.save(engine.snapshot());
+            IO.println(successMessage);
         } catch (SaveGameException e) {
             IO.println("Kunde inte spara: " + e.getMessage());
         }

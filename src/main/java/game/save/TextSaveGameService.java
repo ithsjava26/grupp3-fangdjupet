@@ -59,6 +59,15 @@ public class TextSaveGameService implements SaveGameService {
         }
     }
 
+    @Override
+    public void delete() {
+        try {
+            Files.deleteIfExists(saveFile);
+        } catch (IOException e) {
+            // Nothing sensible to do if the file cannot be removed; keep going.
+        }
+    }
+
     private void writeLine(BufferedWriter writer, String line) throws IOException {
         writer.write(line);
         writer.newLine();

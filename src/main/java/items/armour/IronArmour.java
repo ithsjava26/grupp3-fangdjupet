@@ -1,6 +1,5 @@
 package items.armour;
 
-import characters.Knight;
 import items.Armour;
 import items.Item;
 
@@ -26,10 +25,4 @@ public class IronArmour extends Item implements Armour {
         return new ArmourInfo("Riddarrustning",
                 "Minskar alla skador med 50%", isEquipped());
     }
-
-    @Override
-    public void use(Knight hero) {
-        setEquipped(true);
-    }
-
 }

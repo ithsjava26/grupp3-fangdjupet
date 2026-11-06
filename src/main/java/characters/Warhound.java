@@ -3,7 +3,7 @@ package characters;
 public class Warhound extends Enemy {
 
     public Warhound() {
-        super(40);
+        super(20);
     }
 
     @Override

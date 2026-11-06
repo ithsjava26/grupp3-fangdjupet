@@ -1,10 +1,10 @@
 package items;
 
-import characters.Knight;
+import characters.Hero;
 import items.potions.PotionInfo;
 
 public interface Potion {
-    void use(Knight knight);
+    void use(Hero hero);
 
     PotionInfo getPotionInfo();
 

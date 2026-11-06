@@ -1,5 +1,6 @@
 package items.potions;
 
+import characters.Hero;
 import characters.Knight;
 import items.Item;
 import items.Potion;
@@ -13,9 +14,9 @@ public class LargeHealingPotion extends Item implements Potion {
     }
 
     @Override
-    public void use(Knight knight) {
-        knight.heal(healingAmount);
-        knight.getInventory().removeItem(this, 1);
+    public void use(Hero hero) {
+        hero.heal(healingAmount);
+        hero.getInventory().removeItem(this, 1);
 
 
     }

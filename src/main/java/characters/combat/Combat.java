@@ -70,7 +70,6 @@ public class Combat {
 
                 if (item instanceof Potion potion) {
                     potion.use(hero);
-                    inventory.removeItem(item, 1);
                     IO.println("Du drack " + potion.getPotionInfo().name() + "! Din HP är nu " + hero.getHealth() + ".");
                 } else {
                     IO.println("Föremålet du valde är inte en healingpotion. Du hoppar över healing-fasen.");

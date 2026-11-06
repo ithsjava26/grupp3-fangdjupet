@@ -10,7 +10,7 @@ public class Warhound extends Enemy {
     public void presentEnemy() {
         IO.println("""
                 Du kommer ut på en liten, halmbeklädd gård. Du hör ett morrande, tittar 
-                till vänster och får syn på en gigantisk, mörkgrå hund som rusar mot dig."
+                till vänster och får syn på en gigantisk, mörkgrå hund som rusar mot dig.
                 """);
     }
 

@@ -44,13 +44,10 @@ public abstract class Hero extends AbstractCharacter {
     public void equipWeapon(Weapon weapon, boolean useCriticalAttack) {
         if (useCriticalAttack) {
             setAttackStrategy(new CriticalAttack(weapon));
-            IO.println(getName() + " samlar all sin styrka för ett kraftanfall");
         } else if (weapon.isRangedWeapon()) {
             setAttackStrategy(new RangedAttack(weapon));
-            IO.println(getName() + " gör sig redo att avfyra " + weapon.getWeaponInfo().name() + ".");
         } else {
             setAttackStrategy(new MeleeAttack(weapon));
-            IO.println(getName() + " höjer " + weapon.getWeaponInfo().name() + " för närstrid.");
         }
     }
 }

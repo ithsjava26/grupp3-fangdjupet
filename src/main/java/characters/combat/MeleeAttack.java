@@ -27,7 +27,7 @@ public class MeleeAttack implements AttackStrategy {
         }
 
         int damage = calculateDamage();
-        IO.println(hero.getName() + " anfaller " + enemy.getName() + " med " + weapon.getWeaponInfo().name() + "!");
+        IO.println(hero.getName() + " anfaller med " + weapon.getWeaponInfo().name() + "!");
 
         enemy.takeDamage(damage);
         IO.println(enemy.getName() + " träffades och tog " + damage + " i skada. Fienden har " + enemy.getHealth() +

@@ -8,9 +8,12 @@ public class Insurgent extends Enemy {
 
     @Override
     public void presentEnemy() {
-        IO.println("Dörren gnisslar när den öppnas och avslöjar en skepnad i mörkret. Han tar ett kliv framåt. " +
-                getName() + ", klädd enbart i trasiga kläder men med ett bestämt ansiktsuttryck. Du ska inte komma" +
-                "ut från det här rummet...");
+        IO.println("""
+                Dörren gnisslar när den öppnas och avslöjar en skepnad i mörkret. Skepnaden
+                tar ett kliv framåt. """ + getName() + """
+                , klädd enbart i trasiga kläder
+                och med ett bestämt ansiktsuttryck. Du ska inte komma ut från det här rummet...
+                """);
     }
 
     @Override

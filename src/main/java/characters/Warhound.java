@@ -8,8 +8,10 @@ public class Warhound extends Enemy {
 
     @Override
     public void presentEnemy() {
-        IO.println("Du kommer ut på en liten, halmbeklädd gård. Du hör ett morrande, tittar till vänster och får " +
-                "syn på en gigantisk, mörkgrå hund som rusar mot dig.");
+        IO.println("""
+                Du kommer ut på en liten, halmbeklädd gård. Du hör ett morrande, tittar 
+                till vänster och får syn på en gigantisk, mörkgrå hund som rusar mot dig.
+                """);
     }
 
     @Override

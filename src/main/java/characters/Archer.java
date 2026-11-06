@@ -10,8 +10,11 @@ public class Archer extends Enemy {
 
     @Override
     public void presentEnemy() {
-        IO.println("Du känner den kalla vinden i ansiktet efter att dörren kastats upp. Swooosh! En pil viner förbi " +
-                "ditt ansikte och fastnar i dörren bakom dig. En bågskytt har fått syn på dig!");
+        IO.println("""
+                Du känner den kalla vinden i ansiktet efter att dörren kastats upp.
+                Swooosh! En pil viner förbi ditt ansikte och fastnar i dörren bakom dig.
+                En bågskytt har fått syn på dig!
+                """);
     }
 
     @Override

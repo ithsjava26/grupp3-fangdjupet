@@ -3,13 +3,14 @@ package characters.combat;
 import characters.Hero;
 import characters.Enemy;
 import items.*;
+import items.weapons.SmallStone;
+
 import java.util.Random;
 
 public class Combat {
     private final Random random = new Random();
 
     public void startCombat(Hero hero, Enemy enemy) {
-        IO.println("En fight startar mot " + enemy.getName() + "!");
         enemy.presentEnemy();
 
         boolean isHeroTurn = random.nextBoolean();
@@ -24,18 +25,12 @@ public class Combat {
                 IO.println("--- DIN TUR ---");
                 executeHeroTurn(hero, enemy);
 
-                hero.attack(enemy);
             } else {
                 IO.println("--- " + enemy.getName().toUpperCase() + "S TUR ---");
                 enemy.attack(hero);
             }
             isHeroTurn = !isHeroTurn;
         }
-
-        if (hero.isAlive())
-            IO.println("Du besegrade " + enemy.getName() + "!");
-        else
-            IO.println("Du blev besegrad.");
     }
 
     private void executeHeroTurn(Hero hero, Enemy enemy) {
@@ -44,11 +39,11 @@ public class Combat {
         Inventory inventory = hero.getInventory();
         inventory.printInventory();
 
-        handlePotionPhase(hero, inventory);
-        handleWeaponAndAttackPhase(hero, enemy, inventory);
+        handlePotionChoice(hero, inventory);
+        handleWeaponAndAttackChoice(hero, enemy, inventory);
     }
 
-    private void handlePotionPhase(Hero hero, Inventory inventory) {
+    private void handlePotionChoice(Hero hero, Inventory inventory) {
         if (inventory.size() == 0) {
             return;
         }
@@ -65,8 +60,8 @@ public class Combat {
             return;
         }
 
-        String choice = IO.readln("Vill du dricka en healingpotion innan du anfaller? (ja/nej): ");
-        if (choice.equalsIgnoreCase("j")) {
+        String choice = IO.readln("Vill du dricka en healingpotion innan du anfaller? (Om ja, skriv \"ja\"): ");
+        if (choice.equalsIgnoreCase("ja")) {
             int slotNr = readInt("Ange nummer för den potion du vill dricka: ");
 
             if (slotNr >= 1 && slotNr <= inventory.size()) {
@@ -75,18 +70,17 @@ public class Combat {
 
                 if (item instanceof Potion potion) {
                     potion.use(hero);
-                    inventory.removeItem(item, 1);
                     IO.println("Du drack " + potion.getPotionInfo().name() + "! Din HP är nu " + hero.getHealth() + ".");
                 } else {
                     IO.println("Föremålet du valde är inte en healingpotion. Du hoppar över healing-fasen.");
                 }
             } else {
-                IO.println("Ogiltigt föremålsnummer. Du hoppar över healing-fasen.");
+                IO.println("Ogiltigt nummer. Du hoppar över healing-fasen.");
             }
         }
     }
 
-    private void handleWeaponAndAttackPhase(Hero hero, Enemy enemy, Inventory inventory) {
+    private void handleWeaponAndAttackChoice(Hero hero, Enemy enemy, Inventory inventory) {
         if (inventory.size() == 0) {
             IO.println("Du har inget i ditt inventory!");
             hero.attack(enemy);
@@ -133,6 +127,9 @@ public class Combat {
 
         hero.equipWeapon(chosenWeapon, isCritical);
         hero.attack(enemy);
+        if (chosenWeapon instanceof SmallStone) {
+            inventory.removeItem((Item) chosenWeapon, 1);
+        }
     }
 
     private int readInt(String text) {

@@ -24,6 +24,8 @@ public class RangedAttack implements AttackStrategy {
         if (enemy instanceof Enemy opponent) {
             if (!opponent.isWeaponEffective(info))
                 return;
+
+            //TODO decrease qnt of weapon, eller use().
         }
 
         int damage = calculateDamage();

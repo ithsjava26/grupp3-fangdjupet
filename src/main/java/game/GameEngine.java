@@ -14,7 +14,7 @@ import game.save.GameSnapshot;
 import game.save.InventoryEntry;
 import items.Inventory;
 import items.InventorySlot;
-import items.weapons.ShortIronSword;
+import items.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +38,13 @@ public class GameEngine {
     private int currentRoom;
 
     /**
-     * Creates a fresh run: a new knight with the starting sword equipped.
+     * Creates a fresh run: a new knight with the agreed starting equipment.
      */
     public static GameEngine newGame(String heroName) {
         Knight hero = new Knight(heroName);
-        ShortIronSword startingSword = new ShortIronSword();
-        hero.getInventory().addItem(startingSword, 1);
-        hero.equipWeapon(startingSword, false);
+        addLoot(hero, "Träpinne", 1);
+        addLoot(hero, "Sten", 5);
+        addLoot(hero, "Hälsosmoothie", 1);
         return new GameEngine(hero, 1, List.of());
     }
 
@@ -96,6 +96,7 @@ public class GameEngine {
         if (hero.isAlive()) {
             defeatedEnemies.add(enemy.getName());
             emit(hero.getName() + " besegrade " + enemy.getName() + "!");
+            grantRoomLoot(currentRoom);
             currentRoom++;
             if (isDungeonCleared()) {
                 emit(hero.getName() + " har klarat alla rum i Fangdjupet!");
@@ -120,6 +121,23 @@ public class GameEngine {
             case 3 -> new Archer();
             default -> new BadKingsguard();
         };
+    }
+
+    private void grantRoomLoot(int clearedRoom) {
+        List<String> loot = switch (clearedRoom) {
+            case 1 -> List.of("Kort Järnsvärd", "Hälsosmoothie");
+            case 2 -> List.of("Pilbåge", "Drakblod");
+            case 3 -> List.of("Långt Järnsvärd", "Riddarrustning");
+            default -> List.of();
+        };
+        for (String itemName : loot) {
+            addLoot(hero, itemName, 1);
+            emit(hero.getName() + " hittade " + itemName + " i rummet!");
+        }
+    }
+
+    private static void addLoot(Hero hero, String itemName, int quantity) {
+        hero.getInventory().addItem(Item.of(itemName), quantity);
     }
 
     private List<InventoryEntry> inventoryEntries() {

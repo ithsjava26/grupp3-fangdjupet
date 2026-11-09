@@ -8,6 +8,7 @@ import game.events.GameEvent;
 import game.events.GameEventListener;
 import game.save.GameSnapshot;
 import game.save.InventoryEntry;
+import items.Item;
 import items.weapons.SmallStone;
 import org.junit.jupiter.api.Test;
 
@@ -57,6 +58,34 @@ class GameEngineTest {
         assertEquals(2, engine.getRoomNumber());
         assertEquals(List.of("Stridshunden"), engine.snapshot().defeatedEnemies());
         assertTrue(engine.getHero().isAlive());
+    }
+
+    @Test
+    void clearingARoomShouldGrantThatRoomsLoot() {
+        GameEngine engine = new GameEngine(new Knight("Lancelott"), heroWinsCombat(), 1, List.of());
+        engine.nextBattle();
+        List<InventoryEntry> inventory = engine.snapshot().inventory();
+        assertTrue(inventory.contains(new InventoryEntry("Kort Järnsvärd", 1)));
+        assertTrue(inventory.contains(new InventoryEntry("Hälsosmoothie", 1)));
+    }
+
+    @Test
+    void theStartingLoadoutShouldMatchTheTeamsPlan() {
+        GameEngine engine = GameEngine.newGame("Lancelott");
+        List<InventoryEntry> inventory = engine.snapshot().inventory();
+        assertEquals(3, inventory.size());
+        assertTrue(inventory.contains(new InventoryEntry("Träpinne", 1)));
+        assertTrue(inventory.contains(new InventoryEntry("Sten", 5)));
+        assertTrue(inventory.contains(new InventoryEntry("Hälsosmoothie", 1)));
+    }
+
+    @Test
+    void lootShouldStackWhenTheHeroAlreadyOwnsTheItem() {
+        Knight hero = new Knight("Lancelott");
+        hero.getInventory().addItem(Item.of("Hälsosmoothie"), 1);
+        GameEngine engine = new GameEngine(hero, heroWinsCombat(), 1, List.of());
+        engine.nextBattle();
+        assertTrue(engine.snapshot().inventory().contains(new InventoryEntry("Hälsosmoothie", 2)));
     }
 
     @Test
@@ -120,6 +149,15 @@ class GameEngineTest {
         engine.nextBattle();
         assertTrue(listener.messages.stream().anyMatch(message -> message.contains("Stridshunden")));
         assertTrue(listener.messages.stream().anyMatch(message -> message.contains("besegrade")));
+    }
+
+    @Test
+    void listenersShouldBeToldAboutFoundLoot() {
+        GameEngine engine = new GameEngine(new Knight("Lancelott"), heroWinsCombat(), 1, List.of());
+        RecordingListener listener = new RecordingListener();
+        engine.addListener(listener);
+        engine.nextBattle();
+        assertTrue(listener.messages.stream().anyMatch(message -> message.contains("hittade Kort Järnsvärd")));
     }
 
     @Test

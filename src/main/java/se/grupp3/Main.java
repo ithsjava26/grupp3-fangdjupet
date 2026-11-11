@@ -30,7 +30,7 @@ public class Main {
 
     private void run() {
         SaveGameService saveService = new TextSaveGameService(SAVE_FILE);
-        IO.println("Välkommen till Fangdjupet!");
+        IO.println("Välkommen till Riddarspelet!🤺🏰🫅🏹");
         boolean running = true;
         while (running) {
             printMenu();

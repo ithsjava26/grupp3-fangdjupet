@@ -16,9 +16,6 @@ public class IronArmour extends Item implements Armour {
         return equipped;
     }
 
-    public void setEquipped(boolean equipped) {
-        this.equipped = equipped;
-    }
 
 
     public ArmourInfo getArmourInfo() {

@@ -5,7 +5,7 @@ import items.Item;
 import items.Potion;
 
 public class SmallHealingPotion extends Item implements Potion {
-    private final int healingAmount = 15;
+    private final int healingAmount = 20;
 
     public SmallHealingPotion() {
         super("Hälsosmoothie", true);

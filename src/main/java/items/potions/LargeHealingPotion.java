@@ -1,12 +1,11 @@
 package items.potions;
 
 import characters.Hero;
-import characters.Knight;
 import items.Item;
 import items.Potion;
 
 public class LargeHealingPotion extends Item implements Potion {
-    private final int healingAmount = 35;
+    private final int healingAmount = 40;
 
     public LargeHealingPotion() {
         super("Drakblod", true);//Sorry Tove we can change the name later. I know we decided not to have

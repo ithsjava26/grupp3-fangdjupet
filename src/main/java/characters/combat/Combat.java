@@ -1,7 +1,7 @@
 package characters.combat;
 
-import characters.Hero;
 import characters.Enemy;
+import characters.Hero;
 import items.*;
 import items.weapons.SmallStone;
 
@@ -71,6 +71,12 @@ public class Combat {
                 if (item instanceof Potion potion) {
                     potion.use(hero);
                     IO.println("Du drack " + potion.getPotionInfo().name() + "! Din HP är nu " + hero.getHealth() + ".");
+                    /* I found that if you use the last of a Potion the numbers when choosing
+                    Weapon is shifted -1 if the potion is not the last item in inventory since
+                    the potion disappears from the inventory. to prevent the user from typing the wrong number
+                    we need to print an updated inventory */
+                    inventory.printInventory();
+
                 } else {
                     IO.println("Föremålet du valde är inte en healingpotion. Du hoppar över healing-fasen.");
                 }
